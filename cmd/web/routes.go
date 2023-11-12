@@ -10,7 +10,7 @@ import (
 func routes() http.Handler {
 	mux := pat.New()
 	mux.Get("/home", http.HandlerFunc(handlers.Home))
-	mux.Get("/ws", http.HandlerFunc(handlers.WsEndPoint))
+	mux.Get("/ws", http.HandlerFunc(handlers.WsEndpoint))
 	return mux
 
 }
