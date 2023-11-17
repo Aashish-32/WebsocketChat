@@ -81,7 +81,7 @@ func WsEndpoint(w http.ResponseWriter, r *http.Request) {
 func ListenForWs(conn *WebSocketConnection) {
 	defer func() {
 		if r := recover(); r != nil {
-			log.Println("Error", fmt.Sprintf("%v", r))
+			log.Println("Erroring", fmt.Sprintf("%v", r))
 		}
 	}()
 
@@ -92,7 +92,7 @@ func ListenForWs(conn *WebSocketConnection) {
 		if err != nil {
 			// do nothing
 		} else {
-			payload.Conn = *conn //
+			payload.Conn = *conn //b
 			wsChan <- payload
 		}
 	}
@@ -118,6 +118,12 @@ func ListenToWsChannel() {
 			delete(clients, e.Conn)
 			users := GetUserList()
 			response.ConnectedUsers = users
+			broadcastToAll(response)
+
+		case "broadcast":
+
+			response.Action = "broadcast"
+			response.Message = fmt.Sprintf("<strong>%s</strong>: %s", e.Username, e.Message)
 			broadcastToAll(response)
 
 		}
