@@ -27,13 +27,21 @@ A real-time chat application built with Go (Golang) using WebSockets and the Gin
 
 ```
 .
-├── main.go             # Entry point of the application
-├── hub.go              # Manages clients and message broadcasting
-├── client.go           # Handles individual WebSocket clients
-├── templates/
-│   └── index.html      # Frontend UI
-└── static/
-    └── main.js         # Client-side WebSocket handling
+├── .vscode/                # Visual Studio Code configuration files
+├── cmd/
+│   └── web/                # Main application entry point
+│       └── main.go         # Starts the web server
+├── html/                   # HTML templates for the frontend
+│   └── index.html          # Main chat interface
+├── internal/
+│   └── handlers/           # Application logic and WebSocket handlers
+│       ├── client.go       # Manages individual WebSocket clients
+│       ├── hub.go          # Manages client connections and broadcasting
+│       └── serveWs.go      # Handles WebSocket requests
+├── .gitignore              # Specifies files to ignore in Git
+├── go.mod                  # Go module definition
+├── go.sum                  # Go module checksums
+└── README.md               # Project documentation
 ```
 
 
